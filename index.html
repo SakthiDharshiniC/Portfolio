@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sakthi Dharshini C — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:wght@700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e0a14;
+  --bg2:#130d1c;
+  --card:#1a1126;
+  --card2:#1f1530;
+  --accent:#e8637a;
+  --accent2:#c084fc;
+  --accent3:#f0a06a;
+  --accent4:#7dd3c0;
+  --rose:#f472b6;
+  --text:#f0e8f8;
+  --muted:#7d6e90;
+  --border:rgba(232,99,122,0.14);
+  --glow:rgba(232,99,122,0.22);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 80% 60% at 0% 0%,rgba(192,132,252,0.10) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 50% at 100% 100%,rgba(232,99,122,0.09) 0%,transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%,rgba(60,20,80,0.22) 0%,transparent 70%);
+}
+.aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(130px);opacity:0.08;animation:drift 22s ease-in-out infinite alternate}
+.blob1{width:750px;height:750px;background:#c084fc;top:-280px;left:-220px}
+.blob2{width:580px;height:580px;background:#e8637a;bottom:-200px;right:-160px;animation-delay:-8s}
+.blob3{width:460px;height:460px;background:#f0a06a;top:38%;left:40%;animation-delay:-15s}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}50%{transform:translate(38px,28px) scale(1.06)}100%{transform:translate(-26px,16px) scale(0.96)}}
+.wrap{position:relative;z-index:1}
+
+/* PAGE TRANSITIONS */
+.page{display:none;animation:fadeUp 0.45s ease both}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;justify-content:space-between;align-items:center;padding:0.9rem 3rem;background:rgba(14,10,20,0.85);backdrop-filter:blur(22px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;cursor:pointer;letter-spacing:0.01em}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:600;transition:color 0.3s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--accent)}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--rose));box-shadow:0 0 10px var(--accent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.45);opacity:0.55}}
+#scrollBar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent),var(--accent3));z-index:300;transition:width 0.1s}
+
+/* BACK BUTTON */
+.back-btn{display:inline-flex;align-items:center;gap:0.5rem;color:var(--muted);font-size:0.83rem;font-weight:600;cursor:pointer;padding:0.5rem 1rem 0.5rem 0;margin-bottom:2rem;transition:color 0.25s;text-transform:uppercase;letter-spacing:0.08em;border:none;background:none}
+.back-btn:hover{color:var(--accent)}
+.back-btn i{font-size:0.78rem;transition:transform 0.25s}
+.back-btn:hover i{transform:translateX(-4px)}
+
+/* SHARED */
+.section{padding:6rem 3rem;max-width:1280px;margin:0 auto}
+.sec-label{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.7rem}
+.sec-label::before{content:'◆';font-size:0.5rem;opacity:0.6}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-0.01em;margin-bottom:3.5rem;background:linear-gradient(135deg,var(--text) 55%,var(--muted));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.tag{font-size:0.68rem;padding:0.22rem 0.68rem;border-radius:50px;background:rgba(232,99,122,0.1);color:var(--accent);border:1px solid rgba(232,99,122,0.2);font-weight:600}
+.btn-grad{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2.2rem;border-radius:50px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;text-decoration:none;font-size:0.88rem;font-weight:700;box-shadow:0 0 40px rgba(232,99,122,0.28);transition:transform 0.2s,box-shadow 0.2s;border:none;cursor:pointer}
+.btn-grad:hover{transform:translateY(-3px);box-shadow:0 0 60px rgba(232,99,122,0.48)}
+.btn-ghost{display:inline-flex;align-items:center;gap:0.5rem;padding:0.85rem 2.2rem;border-radius:50px;border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:0.88rem;font-weight:500;transition:all 0.2s;background:none;cursor:pointer}
+.btn-ghost:hover{border-color:var(--accent);background:rgba(232,99,122,0.08)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ━━ HOME HERO ━━ */
+.hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 5rem;max-width:1280px;margin:0 auto;gap:5rem}
+.hero-text{flex:1}
+.hero-badge{display:inline-flex;align-items:center;gap:0.6rem;padding:0.4rem 1.1rem;border-radius:50px;border:1px solid rgba(232,99,122,0.25);background:rgba(232,99,122,0.07);font-size:0.73rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent3);margin-bottom:1.6rem;font-weight:600}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(3rem,7vw,5.8rem);font-weight:800;line-height:0.98;letter-spacing:-0.01em;margin-bottom:1.1rem}
+.hero-name .line1{display:block;color:var(--text)}
+.hero-name .line2{display:block;background:linear-gradient(135deg,var(--accent) 0%,var(--accent2) 55%,var(--rose) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-roles{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem}
+.role-chip{font-size:0.76rem;padding:0.3rem 0.9rem;border-radius:50px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);color:var(--muted);font-weight:500}
+.hero-desc{font-size:0.97rem;color:#c0a8d8;max-width:490px;margin-bottom:2.5rem;line-height:1.9}
+.cta-row{display:flex;gap:1rem;flex-wrap:wrap}
+
+/* ━━ AVATAR CARD (static, no rotation) ━━ */
+.hero-visual{flex:0 0 300px;display:flex;justify-content:center;align-items:center}
+.avatar-card{
+  width:280px;height:340px;
+  background:linear-gradient(145deg,var(--card2),var(--card));
+  border:1px solid rgba(232,99,122,0.22);
+  border-radius:28px;
+  position:relative;
+  overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  box-shadow:0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(232,99,122,0.08);
+}
+.avatar-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 20%,rgba(192,132,252,0.18),transparent 60%),
+             radial-gradient(ellipse at 80% 80%,rgba(232,99,122,0.14),transparent 50%);
+}
+.avatar-card-top{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent2),var(--accent),var(--rose));
+}
+.avatar-initials{
+  font-family:'Playfair Display',serif;
+  font-size:5rem;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),var(--accent2),var(--rose));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  letter-spacing:-0.04em;line-height:1;
+  position:relative;z-index:1;
+  margin-bottom:1rem;
+}
+.avatar-card-name{
+  font-family:'Playfair Display',serif;
+  font-size:0.95rem;font-weight:700;color:var(--text);
+  position:relative;z-index:1;letter-spacing:0.01em;
+  text-align:center;line-height:1.4;
+  margin-bottom:0.3rem;
+}
+.avatar-card-sub{
+  font-size:0.7rem;color:var(--muted);
+  text-transform:uppercase;letter-spacing:0.14em;
+  position:relative;z-index:1;
+  text-align:center;
+}
+.avatar-dots{
+  position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);
+  display:flex;gap:0.4rem;z-index:1;
+}
+.avatar-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:0.35}
+.avatar-dot:nth-child(2){background:var(--accent2);opacity:0.5}
+.avatar-dot:nth-child(3){background:var(--rose);opacity:0.35}
+.avatar-corner{
+  position:absolute;top:1rem;right:1rem;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--accent3);
+  box-shadow:0 0 10px var(--accent3);
+  animation:pulse 2s ease-in-out infinite;
+  z-index:1;
+}
+
+/* HOME ABOUT */
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:4rem;align-items:start}
+.about-text p{color:#b8a8c8;margin-bottom:1.1rem;line-height:1.9;font-size:0.95rem}
+.highlight{color:var(--accent3);font-weight:600}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.9rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.5rem;text-align:center;transition:all 0.3s;position:relative;overflow:hidden;cursor:default}
+.stat-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,99,122,0.04),rgba(192,132,252,0.04));opacity:0;transition:opacity 0.3s}
+.stat-card:hover{border-color:rgba(232,99,122,0.35);transform:translateY(-4px)}
+.stat-card:hover::after{opacity:1}
+.stat-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat-label{font-size:0.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:0.2rem}
+
+/* HOME NAV CARDS */
+.nav-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem}
+.nav-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:2rem;cursor:pointer;transition:all 0.35s;position:relative;overflow:hidden;text-align:left}
+.nav-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,99,122,0.04),rgba(192,132,252,0.04));opacity:0;transition:opacity 0.35s}
+.nav-card:hover{transform:translateY(-8px);border-color:rgba(232,99,122,0.35);box-shadow:0 28px 70px rgba(0,0,0,0.45)}
+.nav-card:hover::before{opacity:1}
+.nav-card-icon{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:1rem;background:linear-gradient(135deg,rgba(232,99,122,0.14),rgba(192,132,252,0.14));border:1px solid var(--border)}
+.nav-card-label{font-size:0.63rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent3);margin-bottom:0.3rem;font-weight:700}
+.nav-card-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:800;color:var(--text);margin-bottom:0.4rem}
+.nav-card-desc{font-size:0.82rem;color:var(--muted);line-height:1.6}
+.nav-card-arrow{position:absolute;right:1.5rem;top:50%;transform:translateY(-50%);color:var(--border);font-size:1rem;transition:all 0.3s}
+.nav-card:hover .nav-card-arrow{color:var(--accent);transform:translateY(-50%) translateX(4px)}
+
+/* ━━ PROJECTS PAGE ━━ */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.75rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:24px;overflow:hidden;transition:all 0.4s;position:relative;cursor:pointer}
+.project-card:hover{transform:translateY(-10px);border-color:rgba(232,99,122,0.38);box-shadow:0 40px 80px rgba(0,0,0,0.5)}
+.proj-img{width:100%;height:200px;overflow:hidden;position:relative}
+.proj-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease;filter:brightness(0.78) saturate(0.8)}
+.project-card:hover .proj-img img{transform:scale(1.07);filter:brightness(0.92) saturate(1.1)}
+.proj-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 35%,var(--card) 100%)}
+.proj-year-badge{position:absolute;top:12px;right:12px;font-size:0.66rem;padding:0.25rem 0.7rem;border-radius:50px;background:rgba(14,10,20,0.82);backdrop-filter:blur(8px);border:1px solid var(--border);color:var(--accent3);letter-spacing:0.1em;font-weight:700}
+.proj-body{padding:1.5rem 1.75rem 1.75rem}
+.proj-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:800;color:var(--text);margin-bottom:0.5rem}
+.proj-desc{font-size:0.84rem;color:var(--muted);margin-bottom:1.2rem;line-height:1.7}
+.proj-line{position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent2),var(--accent),var(--rose));transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
+.project-card:hover .proj-line{transform:scaleX(1)}
+.proj-cta{display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--accent);font-weight:700;margin-top:0.5rem}
+
+/* ━━ PROJECT DETAIL ━━ */
+.detail-hero{padding:7rem 3rem 3rem;max-width:1100px;margin:0 auto}
+.detail-hero-img{width:100%;height:380px;object-fit:cover;border-radius:24px;margin-bottom:2.5rem;filter:brightness(0.88)}
+.detail-chip-row{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem}
+.detail-year{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent3);font-weight:700;margin-bottom:0.5rem}
+.detail-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-0.01em;margin-bottom:1rem;background:linear-gradient(135deg,var(--text),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.detail-lead{font-size:1.03rem;color:#b8a8c8;line-height:1.88;max-width:780px;margin-bottom:3rem}
+.detail-body{max-width:1100px;margin:0 auto;padding:0 3rem 5rem;display:grid;grid-template-columns:2fr 1fr;gap:3rem;align-items:start}
+.detail-content h3{font-family:'Playfair Display',serif;font-size:1.18rem;font-weight:700;color:var(--text);margin:2rem 0 0.75rem}
+.detail-content h3:first-child{margin-top:0}
+.detail-content p{color:#a898b8;font-size:0.94rem;line-height:1.9;margin-bottom:0.75rem}
+.detail-content ul{list-style:none;padding:0;margin-bottom:1.25rem}
+.detail-content ul li{color:#a898b8;font-size:0.94rem;line-height:1.8;padding-left:1.4rem;position:relative;margin-bottom:0.35rem}
+.detail-content ul li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:0.7rem;top:0.3rem}
+.detail-sidebar{display:flex;flex-direction:column;gap:1.25rem}
+.detail-info-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.5rem}
+.detail-info-card h4{font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:1rem}
+.detail-info-row{display:flex;justify-content:space-between;align-items:center;padding:0.55rem 0;border-bottom:1px solid var(--border);font-size:0.84rem}
+.detail-info-row:last-child{border-bottom:none}
+.detail-info-row .lbl{color:var(--muted)}
+.detail-info-row .val{color:var(--text);font-weight:600;text-align:right}
+.detail-gallery{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:2rem}
+.detail-gallery img{width:100%;height:160px;object-fit:cover;border-radius:14px;filter:brightness(0.83);transition:all 0.3s;cursor:pointer}
+.detail-gallery img:hover{filter:brightness(1);transform:scale(1.02)}
+
+/* ━━ EDUCATION ━━ */
+.tl-wrap{position:relative;padding-left:2.5rem;max-width:860px}
+.tl-wrap::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--accent2),var(--accent),var(--accent3))}
+.tl-item{position:relative;margin-bottom:2rem;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.75rem 2rem;transition:all 0.3s;cursor:pointer}
+.tl-item:hover{border-color:rgba(232,99,122,0.38);transform:translateX(8px);box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+.tl-item::before{content:'';position:absolute;left:-2.9rem;top:1.8rem;width:13px;height:13px;border-radius:50%;background:var(--accent);border:2.5px solid var(--bg);box-shadow:0 0 14px var(--accent)}
+.tl-year{font-size:0.68rem;color:var(--accent3);letter-spacing:0.16em;text-transform:uppercase;font-weight:700;margin-bottom:0.4rem}
+.tl-title{font-size:1.03rem;font-weight:700;color:var(--text);margin-bottom:0.25rem}
+.tl-sub{font-size:0.84rem;color:var(--muted);margin-bottom:0.6rem}
+.tl-badge{display:inline-block;font-size:0.7rem;padding:0.2rem 0.85rem;border-radius:50px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-weight:700}
+.tl-detail{font-size:0.87rem;color:#8878a8;line-height:1.75;margin-top:0.75rem;display:none}
+.tl-item.open .tl-detail{display:block}
+.tl-toggle{font-size:0.7rem;color:var(--accent);cursor:pointer;margin-top:0.5rem;font-weight:700;display:flex;align-items:center;gap:0.4rem}
+
+/* ━━ SKILLS ━━ */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:1.75rem 1.5rem;transition:all 0.35s;position:relative;overflow:hidden;cursor:default}
+.skill-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transform-origin:left;transition:transform 0.35s}
+.skill-card:hover{transform:translateY(-8px);border-color:rgba(232,99,122,0.32);box-shadow:0 24px 60px rgba(232,99,122,0.09)}
+.skill-card:hover::after{transform:scaleX(1)}
+.skill-icon-wrap{width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,rgba(232,99,122,0.14),rgba(192,132,252,0.14));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.45rem;margin-bottom:1rem}
+.skill-cat{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent3);margin-bottom:0.3rem;font-weight:700}
+.skill-name{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:0.8rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.skill-bar-wrap{margin-top:1rem}
+.skill-bar-label{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--muted);margin-bottom:0.35rem}
+.skill-bar{height:4px;border-radius:2px;background:rgba(255,255,255,0.05)}
+.skill-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width 1.2s ease}
+
+/* ━━ CERTIFICATIONS ━━ */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.5rem;display:flex;align-items:flex-start;gap:1.1rem;transition:all 0.3s;cursor:default}
+.cert-card:hover{border-color:var(--accent2);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+.cert-icon-wrap{width:48px;height:48px;border-radius:13px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.cert-name{font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:0.2rem}
+.cert-org{font-size:0.78rem;color:var(--muted)}
+.cert-score{margin-top:0.5rem;font-size:0.7rem;color:var(--accent3);font-weight:700;letter-spacing:0.06em}
+.cert-bar{height:3px;border-radius:2px;background:rgba(255,255,255,0.05);margin-top:0.6rem}
+.cert-bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent3),var(--accent));transition:width 1.4s ease}
+
+/* ━━ ACHIEVEMENTS ━━ */
+.ach-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.1rem}
+.ach-item{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start;transition:all 0.3s}
+.ach-item:hover{border-color:var(--accent3);transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.3)}
+.ach-icon{font-size:1.6rem;flex-shrink:0;margin-top:2px}
+.ach-title{font-size:0.92rem;font-weight:700;color:var(--text);margin-bottom:0.25rem}
+.ach-text{font-size:0.84rem;color:#8878a8;line-height:1.65}
+
+/* ━━ CONTACT ━━ */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.contact-info{display:flex;flex-direction:column;gap:1rem}
+.contact-item{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.4rem;background:var(--card);border:1px solid var(--border);border-radius:16px;text-decoration:none;color:var(--text);transition:all 0.3s}
+.contact-item:hover{border-color:var(--accent);transform:translateX(6px)}
+.c-icon{width:46px;height:46px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:white}
+.c-label{font-size:0.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em}
+.c-val{font-size:0.9rem;font-weight:600;color:var(--text)}
+.contact-cta{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:2.75rem;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.contact-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(232,99,122,0.07),transparent 70%)}
+.contact-cta h3{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:800;letter-spacing:-0.01em;margin-bottom:0.75rem;position:relative}
+.contact-cta p{color:var(--muted);font-size:0.92rem;margin-bottom:2rem;line-height:1.8;position:relative}
+
+/* INTERESTS */
+.interest-grid{display:flex;flex-wrap:wrap;gap:0.9rem}
+.interest-pill{padding:0.75rem 1.6rem;border-radius:50px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:0.87rem;display:flex;align-items:center;gap:0.6rem;transition:all 0.3s;font-weight:500}
+.interest-pill:hover{border-color:var(--accent);background:rgba(232,99,122,0.08);transform:translateY(-3px)}
+.interest-pill i{color:var(--accent);font-size:0.88rem}
+
+/* FOOTER */
+footer{text-align:center;padding:2.5rem 3rem;border-top:1px solid var(--border);color:var(--muted);font-size:0.78rem;max-width:1280px;margin:0 auto}
+footer span{color:var(--accent)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:0.9rem 1.5rem}
+  .nav-links{display:none}
+  .hero{flex-direction:column-reverse;padding:7rem 1.5rem 3rem;gap:2.5rem}
+  .hero-visual{flex:none}
+  .avatar-card{width:220px;height:270px}
+  .avatar-initials{font-size:4rem}
+  .section{padding:4rem 1.5rem}
+  .about-grid,.contact-grid,.detail-body{grid-template-columns:1fr}
+  .detail-hero{padding:6rem 1.5rem 2rem}
+  .detail-body{padding:0 1.5rem 4rem}
+  .detail-gallery{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div id="scrollBar"></div>
+<div class="aurora">
+  <div class="blob blob1"></div><div class="blob blob2"></div><div class="blob blob3"></div>
+</div>
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">Sakthi.</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" data-page="home">Home</a></li>
+    <li><a onclick="showPage('projects')" data-page="projects">Projects</a></li>
+    <li><a onclick="showPage('skills')" data-page="skills">Skills</a></li>
+    <li><a onclick="showPage('education')" data-page="education">Education</a></li>
+    <li><a onclick="showPage('achievements')" data-page="achievements">Achievements</a></li>
+    <li><a onclick="showPage('contact')" data-page="contact">Contact</a></li>
+  </ul>
+  <div class="nav-dot"></div>
+</nav>
+
+<!-- ━━━━━━━━━ HOME PAGE ━━━━━━━━━ -->
+<div id="page-home" class="page wrap active">
+  <div class="hero">
+    <div class="hero-text reveal">
+      <div class="hero-badge"><i class="fa-solid fa-circle-dot"></i> Open to Internships &amp; Collaborations</div>
+      <h1 class="hero-name">
+        <span class="line1">Sakthi</span>
+        <span class="line2">Dharshini C</span>
+      </h1>
+      <div class="hero-roles">
+        <span class="role-chip">Full Stack Developer</span>
+        <span class="role-chip">IoT Engineer</span>
+        <span class="role-chip">ML Explorer</span>
+        <span class="role-chip">B.Tech · IT · NGPIT</span>
+      </div>
+      <p class="hero-desc">A passionate technologist from Coimbatore, India — crafting impactful solutions across web, embedded systems and AI. Driven by curiosity, fuelled by code.</p>
+      <div class="cta-row">
+        <button class="btn-grad" onclick="showPage('projects')">View My Work <i class="fa-solid fa-arrow-right"></i></button>
+        <button class="btn-ghost" onclick="showPage('contact')">Get In Touch</button>
+      </div>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="avatar-card">
+        <div class="avatar-card-top"></div>
+        <div class="avatar-corner"></div>
+        <img class="avatar-photo" src="pic.jpg" width="100%" height="100%" style="object-fit:cover;filter:brightness(0.9);border-radius:28px">
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <section class="section wrap">
+    <div class="reveal">
+      <div class="sec-label">Who I Am</div>
+      <h2 class="sec-title">About Me</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div class="about-text">
+        <p>I'm <span class="highlight">Sakthi Dharshini C</span>, a second-year B.Tech student in Information Technology at Dr. N.G.P. Institute of Technology, Coimbatore. I build technology that genuinely matters.</p>
+        <p>From IoT-powered safety systems to full-stack web platforms and machine learning models, I love turning real problems into working products. I completed a <span class="highlight">Full Stack internship at Krishtec</span> building a React.js + Node.js e-commerce platform.</p>
+        <p>Off-screen I'm a competitive badminton player and a Bharatanatyam dancer. I'm fluent in <span class="highlight">English, Tamil &amp; Kannada</span>.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-num">4+</div><div class="stat-label">Projects</div></div>
+        <div class="stat-card"><div class="stat-num">82%</div><div class="stat-label">B.Tech CGPA</div></div>
+        <div class="stat-card"><div class="stat-num">94%</div><div class="stat-label">Top NPTEL</div></div>
+        <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">Certifications</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="section wrap">
+    <div class="reveal">
+      <div class="sec-label">Explore</div>
+      <h2 class="sec-title">Everything About Me</h2>
+    </div>
+    <div class="nav-cards reveal">
+      <div class="nav-card" onclick="showPage('projects')">
+        <div class="nav-card-icon">🚀</div>
+        <div class="nav-card-label">Portfolio</div>
+        <div class="nav-card-title">Projects</div>
+        <div class="nav-card-desc">4 real-world builds across IoT, web &amp; AI with full breakdowns</div>
+        <i class="fa-solid fa-chevron-right nav-card-arrow"></i>
+      </div>
+      <div class="nav-card" onclick="showPage('skills')">
+        <div class="nav-card-icon">⚡</div>
+        <div class="nav-card-label">Tech Stack</div>
+        <div class="nav-card-title">Skills</div>
+        <div class="nav-card-desc">Languages, frameworks, IoT tools and soft skills</div>
+        <i class="fa-solid fa-chevron-right nav-card-arrow"></i>
+      </div>
+      <div class="nav-card" onclick="showPage('education')">
+        <div class="nav-card-icon">🎓</div>
+        <div class="nav-card-label">Journey</div>
+        <div class="nav-card-title">Education</div>
+        <div class="nav-card-desc">Academic milestones, certifications &amp; internship</div>
+        <i class="fa-solid fa-chevron-right nav-card-arrow"></i>
+      </div>
+      <div class="nav-card" onclick="showPage('achievements')">
+        <div class="nav-card-icon">🏆</div>
+        <div class="nav-card-label">Highlights</div>
+        <div class="nav-card-title">Achievements</div>
+        <div class="nav-card-desc">Awards, leadership, technical events &amp; extracurriculars</div>
+        <i class="fa-solid fa-chevron-right nav-card-arrow"></i>
+      </div>
+      <div class="nav-card" onclick="showPage('contact')">
+        <div class="nav-card-icon">💬</div>
+        <div class="nav-card-label">Connect</div>
+        <div class="nav-card-title">Contact</div>
+        <div class="nav-card-desc">Email, phone, LinkedIn and location details</div>
+        <i class="fa-solid fa-chevron-right nav-card-arrow"></i>
+      </div>
+    </div>
+  </section>
+
+  <footer><p>Designed &amp; built with ♥ by <span>Sakthi Dharshini C</span> · Coimbatore, India · 2025</p></footer>
+</div>
+
+<!-- ━━━━━━━━━ PROJECTS PAGE ━━━━━━━━━ -->
+<div id="page-projects" class="page wrap">
+  <section class="section">
+    <button class="back-btn" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+    <div class="reveal">
+      <div class="sec-label">What I've Built</div>
+      <h2 class="sec-title">Projects</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card reveal" onclick="showProject('gas')">
+        <div class="proj-line"></div>
+        <div class="proj-img">
+          <img src="https://www.electronicshub.org/wp-content/uploads/2021/09/Gas-Leakage-Detector-Circuit-using-Arduino.jpg" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=700&q=80'" alt="Gas Monitoring"/>
+          <div class="proj-img-overlay"></div>
+          <div class="proj-year-badge">2024</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Gas Level Monitoring System</div>
+          <div class="proj-desc">Real-time gas leakage detection with buzzer alerts using Arduino and MQ gas sensors.</div>
+          <div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem"><span class="tag">Arduino UNO</span><span class="tag">Gas Sensor</span><span class="tag">LCD</span><span class="tag">Buzzer</span></div>
+          <div class="proj-cta"><i class="fa-solid fa-arrow-right"></i> View Full Details</div>
+        </div>
+      </div>
+      <div class="project-card reveal" onclick="showProject('sewage')">
+        <div class="proj-line"></div>
+        <div class="proj-img">
+          <img src="https://how2electronics.com/wp-content/uploads/2021/07/IoT-Based-Smart-Sewage-Monitoring-System.jpg" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=700&q=80'" alt="Sewage Monitoring"/>
+          <div class="proj-img-overlay"></div>
+          <div class="proj-year-badge">2025</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Smart Sewage Monitoring System</div>
+          <div class="proj-desc">IoT system detecting toxic gases and blockages with real-time GSM alert notifications.</div>
+          <div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem"><span class="tag">Arduino UNO</span><span class="tag">Ultrasonic</span><span class="tag">GSM Module</span></div>
+          <div class="proj-cta"><i class="fa-solid fa-arrow-right"></i> View Full Details</div>
+        </div>
+      </div>
+      <div class="project-card reveal" onclick="showProject('ecommerce')">
+        <div class="proj-line"></div>
+        <div class="proj-img">
+          <img src="https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80" alt="E-Commerce"/>
+          <div class="proj-img-overlay"></div>
+          <div class="proj-year-badge">2024</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">E-Commerce Web Application</div>
+          <div class="proj-desc">Full-stack shopping platform built with React.js frontend and Node.js backend.</div>
+          <div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem"><span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">JavaScript</span><span class="tag">SQL</span></div>
+          <div class="proj-cta"><i class="fa-solid fa-arrow-right"></i> View Full Details</div>
+        </div>
+      </div>
+      <div class="project-card reveal" onclick="showProject('drowsy')">
+        <div class="proj-line"></div>
+        <div class="proj-img">
+          <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80" alt="Drowsiness Detection"/>
+          <div class="proj-img-overlay"></div>
+          <div class="proj-year-badge">2025</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-title">Driver Drowsiness Detection</div>
+          <div class="proj-desc">Real-time computer vision system using OpenCV and ML to detect driver fatigue and trigger alerts.</div>
+          <div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:0.75rem"><span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">ML</span><span class="tag">Camera</span></div>
+          <div class="proj-cta"><i class="fa-solid fa-arrow-right"></i> View Full Details</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer><p>Designed &amp; built with ♥ by <span>Sakthi Dharshini C</span></p></footer>
+</div>
+
+<!-- ━━━━━━━━━ PROJECT DETAIL PAGES ━━━━━━━━━ -->
+
+<!-- GAS -->
+<div id="page-proj-gas" class="page wrap">
+  <div class="detail-hero">
+    <button class="back-btn" onclick="showPage('projects')"><i class="fa-solid fa-arrow-left"></i> All Projects</button>
+    <div class="detail-year">2024 · IoT · Embedded Systems</div>
+    <h1 class="detail-title">Gas Level Monitoring System</h1>
+    <p class="detail-lead">A real-time embedded safety system that continuously monitors ambient gas concentration and triggers audible and visual alerts the moment unsafe levels are detected — preventing accidents before they happen.</p>
+    <div class="detail-chip-row">
+      <span class="tag">Arduino UNO</span><span class="tag">Arduino IDE</span><span class="tag">MQ Gas Sensor</span><span class="tag">Buzzer</span><span class="tag">LCD 16x2</span><span class="tag">Embedded C</span>
+    </div>
+    <img src="https://www.electronicshub.org/wp-content/uploads/2021/09/Gas-Leakage-Detector-Circuit-using-Arduino.jpg" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&q=80'" alt="Gas Monitoring System" class="detail-hero-img"/>
+  </div>
+  <div class="detail-body">
+    <div class="detail-content reveal">
+      <h3>Project Overview</h3>
+      <p>The Gas Level Monitoring System is a hardware-software integrated safety solution designed to detect dangerous gas concentrations in enclosed spaces like kitchens, labs, and industrial environments. Using an MQ series gas sensor connected to an Arduino UNO, the system continuously reads analog gas concentration values and compares them against a safe threshold.</p>
+      <h3>How It Works</h3>
+      <ul>
+        <li>The MQ gas sensor detects LPG, methane, and other combustible gases and outputs an analog voltage proportional to concentration.</li>
+        <li>The Arduino UNO reads this value via its ADC and converts it to a PPM (parts per million) reading.</li>
+        <li>The LCD display shows the real-time gas level and status ("SAFE" / "DANGER") at all times.</li>
+        <li>When gas concentration exceeds the defined threshold (e.g. 300 PPM), the buzzer is activated and the LCD flashes a warning.</li>
+        <li>The alert continues until gas levels return to safe range, ensuring sustained awareness.</li>
+      </ul>
+      <h3>Key Features</h3>
+      <ul>
+        <li>Real-time continuous monitoring with instant response (sub-second latency)</li>
+        <li>Visual display on LCD 16×2 showing live readings</li>
+        <li>Audible buzzer alert for immediate physical warning</li>
+        <li>Adjustable threshold via potentiometer for different environments</li>
+        <li>Low-power, low-cost design suitable for home or industrial use</li>
+      </ul>
+      <h3>Challenges &amp; Learnings</h3>
+      <p>Calibrating the gas sensor for accurate PPM readings required understanding its voltage-to-concentration curve from the datasheet. Noise filtering in the ADC readings was handled by averaging multiple samples per cycle. This project deepened my understanding of analog sensor interfacing, embedded C programming, and real-world safety system design.</p>
+      <div class="detail-gallery">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80" alt="Arduino hardware setup"/>
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=500&q=80" alt="Circuit board closeup"/>
+      </div>
+    </div>
+    <div class="detail-sidebar reveal">
+      <div class="detail-info-card">
+        <h4>Project Info</h4>
+        <div class="detail-info-row"><span class="lbl">Year</span><span class="val">2024</span></div>
+        <div class="detail-info-row"><span class="lbl">Category</span><span class="val">IoT / Embedded</span></div>
+        <div class="detail-info-row"><span class="lbl">Platform</span><span class="val">Arduino UNO</span></div>
+        <div class="detail-info-row"><span class="lbl">Language</span><span class="val">Embedded C</span></div>
+        <div class="detail-info-row"><span class="lbl">Status</span><span class="val">✅ Completed</span></div>
+      </div>
+      <div class="detail-info-card">
+        <h4>Tools &amp; Hardware</h4>
+        <div class="detail-info-row"><span class="lbl">MCU</span><span class="val">Arduino UNO</span></div>
+        <div class="detail-info-row"><span class="lbl">Sensor</span><span class="val">MQ-2 / MQ-5</span></div>
+        <div class="detail-info-row"><span class="lbl">Display</span><span class="val">LCD 16×2</span></div>
+        <div class="detail-info-row"><span class="lbl">Alert</span><span class="val">Piezo Buzzer</span></div>
+        <div class="detail-info-row"><span class="lbl">IDE</span><span class="val">Arduino IDE</span></div>
+      </div>
+      <button class="btn-grad" onclick="showPage('projects')" style="width:100%;justify-content:center"><i class="fa-solid fa-arrow-left"></i> All Projects</button>
+    </div>
+  </div>
+</div>
+
+<!-- SEWAGE -->
+<div id="page-proj-sewage" class="page wrap">
+  <div class="detail-hero">
+    <button class="back-btn" onclick="showPage('projects')"><i class="fa-solid fa-arrow-left"></i> All Projects</button>
+    <div class="detail-year">2025 · IoT · Smart City</div>
+    <h1 class="detail-title">Smart Sewage Monitoring System</h1>
+    <p class="detail-lead">An IoT-based infrastructure monitoring solution that detects toxic gas buildup and sewage blockages in underground drain systems, sending real-time SMS alerts to municipal workers — making urban sanitation safer and smarter.</p>
+    <div class="detail-chip-row">
+      <span class="tag">Arduino UNO</span><span class="tag">Gas Sensor</span><span class="tag">Ultrasonic Sensor</span><span class="tag">GSM SIM800L</span><span class="tag">LCD 16x2</span><span class="tag">IoT</span>
+    </div>
+    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1000&q=80" alt="Smart Sewage Monitoring" class="detail-hero-img"/>
+  </div>
+  <div class="detail-body">
+    <div class="detail-content reveal">
+      <h3>Project Overview</h3>
+      <p>Sewage workers face extreme risks from toxic gases like hydrogen sulfide (H₂S) and methane that accumulate in manholes and underground drains. This project provides a low-cost, automated monitoring solution that eliminates the need for workers to manually check conditions before entering — protecting lives through technology.</p>
+      <h3>How It Works</h3>
+      <ul>
+        <li>An MQ gas sensor continuously monitors for toxic and combustible gases inside the sewage chamber.</li>
+        <li>An ultrasonic sensor measures the sewage water level to detect blockages or overflow conditions.</li>
+        <li>Both readings are processed by the Arduino UNO in real time.</li>
+        <li>The LCD displays live gas levels and water depth readings on site.</li>
+        <li>When either reading exceeds safe thresholds, the GSM SIM800L module sends an SMS alert with the specific hazard type to registered mobile numbers.</li>
+        <li>The system remains active 24/7 on a low-power loop, transmitting alerts only when needed.</li>
+      </ul>
+      <h3>Key Features</h3>
+      <ul>
+        <li>Dual-sensor monitoring — gas toxicity + sewage depth simultaneously</li>
+        <li>Real-time GSM SMS notifications to multiple registered numbers</li>
+        <li>Onsite LCD status display for maintenance personnel</li>
+        <li>24/7 autonomous operation — no human intervention needed</li>
+        <li>Scalable design — multiple units can be deployed across a city grid</li>
+      </ul>
+      <h3>Impact &amp; Learnings</h3>
+      <p>This project directly addresses a critical urban safety problem. Integrating GSM communication with Arduino taught me about UART serial communication, AT command protocols, and the challenges of reliable communication in low-signal underground environments.</p>
+      <div class="detail-gallery">
+        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=500&q=80" alt="Urban infrastructure"/>
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&q=80" alt="Sensor hardware"/>
+      </div>
+    </div>
+    <div class="detail-sidebar reveal">
+      <div class="detail-info-card">
+        <h4>Project Info</h4>
+        <div class="detail-info-row"><span class="lbl">Year</span><span class="val">2025</span></div>
+        <div class="detail-info-row"><span class="lbl">Category</span><span class="val">IoT / Smart City</span></div>
+        <div class="detail-info-row"><span class="lbl">Platform</span><span class="val">Arduino UNO</span></div>
+        <div class="detail-info-row"><span class="lbl">Language</span><span class="val">Embedded C</span></div>
+        <div class="detail-info-row"><span class="lbl">Status</span><span class="val">✅ Completed</span></div>
+      </div>
+      <div class="detail-info-card">
+        <h4>Components</h4>
+        <div class="detail-info-row"><span class="lbl">MCU</span><span class="val">Arduino UNO</span></div>
+        <div class="detail-info-row"><span class="lbl">Gas</span><span class="val">MQ-4 Sensor</span></div>
+        <div class="detail-info-row"><span class="lbl">Level</span><span class="val">HC-SR04 Ultrasonic</span></div>
+        <div class="detail-info-row"><span class="lbl">Comms</span><span class="val">GSM SIM800L</span></div>
+        <div class="detail-info-row"><span class="lbl">Display</span><span class="val">LCD 16×2</span></div>
+      </div>
+      <button class="btn-grad" onclick="showPage('projects')" style="width:100%;justify-content:center"><i class="fa-solid fa-arrow-left"></i> All Projects</button>
+    </div>
+  </div>
+</div>
+
+<!-- E-COMMERCE -->
+<div id="page-proj-ecommerce" class="page wrap">
+  <div class="detail-hero">
+    <button class="back-btn" onclick="showPage('projects')"><i class="fa-solid fa-arrow-left"></i> All Projects</button>
+    <div class="detail-year">2024 · Full Stack · Web Development</div>
+    <h1 class="detail-title">E-Commerce Web Application</h1>
+    <p class="detail-lead">A fully functional full-stack shopping platform featuring a responsive React.js frontend, Node.js backend API, and database integration — delivering a seamless product browsing, cart, and checkout experience.</p>
+    <div class="detail-chip-row">
+      <span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">JavaScript</span><span class="tag">SQL Database</span><span class="tag">REST API</span><span class="tag">HTML/CSS</span>
+    </div>
+    <img src="https://images.unsplash.com/photo-1557821552-17105176677c?w=1000&q=80" alt="E-Commerce App" class="detail-hero-img"/>
+  </div>
+  <div class="detail-body">
+    <div class="detail-content reveal">
+      <h3>Project Overview</h3>
+      <p>Built during my internship at Krishtec, this e-commerce web application demonstrates a complete full-stack implementation. The platform allows users to browse a product catalogue, add items to a cart, and complete purchases — with all data persisted in a relational database. It was built from scratch over 15 days of intensive development.</p>
+      <h3>Architecture</h3>
+      <ul>
+        <li><strong style="color:var(--accent)">Frontend (React.js):</strong> Component-based UI with React Router for client-side navigation, useState/useEffect hooks for state management, and responsive CSS layout for mobile/desktop.</li>
+        <li><strong style="color:var(--accent)">Backend (Node.js):</strong> Express.js REST API handling product listing, cart operations, and order processing. Routes structured with MVC pattern.</li>
+        <li><strong style="color:var(--accent)">Database (SQL):</strong> Relational schema with tables for products, users, orders and order items. Queries optimised for listing and cart operations.</li>
+        <li><strong style="color:var(--accent)">API Integration:</strong> Axios used on the frontend for HTTP calls to the backend REST endpoints.</li>
+      </ul>
+      <h3>Key Features</h3>
+      <ul>
+        <li>Product catalogue with category filtering and search</li>
+        <li>Add to cart, update quantity, remove items</li>
+        <li>Order placement with total price calculation</li>
+        <li>Responsive layout working on mobile and desktop</li>
+        <li>Backend validation and error handling on all API endpoints</li>
+      </ul>
+      <h3>Learnings</h3>
+      <p>This project taught me how React component architecture scales to real applications, how to design a REST API with Express, and how frontend and backend connect through HTTP. Working under real internship conditions with deadlines gave me practical experience in time management and code organisation.</p>
+      <div class="detail-gallery">
+        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=500&q=80" alt="Shopping UI"/>
+        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80" alt="Web development"/>
+      </div>
+    </div>
+    <div class="detail-sidebar reveal">
+      <div class="detail-info-card">
+        <h4>Project Info</h4>
+        <div class="detail-info-row"><span class="lbl">Year</span><span class="val">2024</span></div>
+        <div class="detail-info-row"><span class="lbl">Category</span><span class="val">Full Stack Web</span></div>
+        <div class="detail-info-row"><span class="lbl">Duration</span><span class="val">15 days</span></div>
+        <div class="detail-info-row"><span class="lbl">Context</span><span class="val">Krishtec Internship</span></div>
+        <div class="detail-info-row"><span class="lbl">Status</span><span class="val">✅ Completed</span></div>
+      </div>
+      <div class="detail-info-card">
+        <h4>Tech Stack</h4>
+        <div class="detail-info-row"><span class="lbl">Frontend</span><span class="val">React.js</span></div>
+        <div class="detail-info-row"><span class="lbl">Backend</span><span class="val">Node.js / Express</span></div>
+        <div class="detail-info-row"><span class="lbl">Database</span><span class="val">SQL</span></div>
+        <div class="detail-info-row"><span class="lbl">Styling</span><span class="val">CSS / HTML</span></div>
+        <div class="detail-info-row"><span class="lbl">HTTP</span><span class="val">Axios / REST</span></div>
+      </div>
+      <button class="btn-grad" onclick="showPage('projects')" style="width:100%;justify-content:center"><i class="fa-solid fa-arrow-left"></i> All Projects</button>
+    </div>
+  </div>
+</div>
+
+<!-- DROWSINESS -->
+<div id="page-proj-drowsy" class="page wrap">
+  <div class="detail-hero">
+    <button class="back-btn" onclick="showPage('projects')"><i class="fa-solid fa-arrow-left"></i> All Projects</button>
+    <div class="detail-year">2025 · Computer Vision · Machine Learning</div>
+    <h1 class="detail-title">Driver Drowsiness Detection System</h1>
+    <p class="detail-lead">A real-time AI-powered safety system that monitors a driver's eye and facial cues through a camera, detects drowsiness using computer vision and machine learning, and triggers instant alerts to prevent road accidents.</p>
+    <div class="detail-chip-row">
+      <span class="tag">Python</span><span class="tag">OpenCV</span><span class="tag">Machine Learning</span><span class="tag">dlib</span><span class="tag">Camera Module</span><span class="tag">Pygame (Alert)</span>
+    </div>
+    <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=1000&q=80" alt="Driver Drowsiness Detection" class="detail-hero-img"/>
+  </div>
+  <div class="detail-body">
+    <div class="detail-content reveal">
+      <h3>Project Overview</h3>
+      <p>Driver fatigue is one of the leading causes of road accidents worldwide. This system uses a standard webcam and computer vision algorithms to continuously analyse the driver's face and detect early signs of drowsiness — specifically by monitoring eye aspect ratio (EAR) — and sounds an alert before the driver falls asleep at the wheel.</p>
+      <h3>How It Works</h3>
+      <ul>
+        <li><strong style="color:var(--accent)">Face Detection:</strong> OpenCV's Haar Cascade or dlib's HOG-based face detector locates the driver's face in each video frame.</li>
+        <li><strong style="color:var(--accent)">Facial Landmark Detection:</strong> dlib's 68-point landmark predictor maps key facial points, isolating the eye regions precisely.</li>
+        <li><strong style="color:var(--accent)">Eye Aspect Ratio (EAR):</strong> The EAR formula calculates the ratio of eye height to width. When eyes are open the EAR is ~0.3; when closed it drops sharply towards 0.</li>
+        <li><strong style="color:var(--accent)">Drowsiness Threshold:</strong> If EAR stays below 0.25 for more than 20 consecutive frames (~0.6 seconds), drowsiness is flagged.</li>
+        <li><strong style="color:var(--accent)">Alert System:</strong> A loud audio alert is triggered via Pygame, and a visual warning overlays the video feed.</li>
+      </ul>
+      <h3>Key Features</h3>
+      <ul>
+        <li>Real-time video processing at 20+ FPS on standard hardware</li>
+        <li>Works in varied lighting conditions with preprocessing</li>
+        <li>Immediate audio + visual alert on drowsiness detection</li>
+        <li>No specialised hardware required — uses any standard webcam</li>
+        <li>Configurable sensitivity threshold for different driver profiles</li>
+      </ul>
+      <h3>Challenges &amp; Learnings</h3>
+      <p>The biggest challenge was handling false positives — detecting blinks as drowsiness. This was solved by requiring the low-EAR condition to persist for multiple consecutive frames rather than a single frame. Working with dlib's pretrained models and understanding facial geometry were major learning milestones.</p>
+      <div class="detail-gallery">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="Face detection"/>
+        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=500&q=80" alt="Python ML"/>
+      </div>
+    </div>
+    <div class="detail-sidebar reveal">
+      <div class="detail-info-card">
+        <h4>Project Info</h4>
+        <div class="detail-info-row"><span class="lbl">Year</span><span class="val">2025</span></div>
+        <div class="detail-info-row"><span class="lbl">Category</span><span class="val">CV / ML / Safety</span></div>
+        <div class="detail-info-row"><span class="lbl">Language</span><span class="val">Python</span></div>
+        <div class="detail-info-row"><span class="lbl">Input</span><span class="val">Webcam / Camera</span></div>
+        <div class="detail-info-row"><span class="lbl">Status</span><span class="val">✅ Completed</span></div>
+      </div>
+      <div class="detail-info-card">
+        <h4>Libraries</h4>
+        <div class="detail-info-row"><span class="lbl">Vision</span><span class="val">OpenCV</span></div>
+        <div class="detail-info-row"><span class="lbl">Landmarks</span><span class="val">dlib</span></div>
+        <div class="detail-info-row"><span class="lbl">Math</span><span class="val">scipy / numpy</span></div>
+        <div class="detail-info-row"><span class="lbl">Audio</span><span class="val">Pygame</span></div>
+        <div class="detail-info-row"><span class="lbl">Algorithm</span><span class="val">EAR Detection</span></div>
+      </div>
+      <button class="btn-grad" onclick="showPage('projects')" style="width:100%;justify-content:center"><i class="fa-solid fa-arrow-left"></i> All Projects</button>
+    </div>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━ SKILLS PAGE ━━━━━━━━━ -->
+<div id="page-skills" class="page wrap">
+  <section class="section">
+    <button class="back-btn" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+    <div class="reveal">
+      <div class="sec-label">Tech Stack</div>
+      <h2 class="sec-title">Skills &amp; Tools</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">💻</div>
+        <div class="skill-cat">Programming Languages</div>
+        <div class="skill-name">Core Languages</div>
+        <div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem"><span class="tag">Java</span><span class="tag">C</span><span class="tag">Python</span></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Java</span><span>75%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="75" style="width:0"></div></div></div>
+        <div class="skill-bar-wrap" style="margin-top:0.6rem"><div class="skill-bar-label"><span>Python</span><span>70%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="70" style="width:0"></div></div></div>
+        <div class="skill-bar-wrap" style="margin-top:0.6rem"><div class="skill-bar-label"><span>C</span><span>65%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="65" style="width:0"></div></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">🌐</div>
+        <div class="skill-cat">Web Development</div>
+        <div class="skill-name">Frontend &amp; Backend</div>
+        <div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">React.js</span><span class="tag">Node.js</span></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>React.js</span><span>70%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="70" style="width:0"></div></div></div>
+        <div class="skill-bar-wrap" style="margin-top:0.6rem"><div class="skill-bar-label"><span>HTML/CSS</span><span>80%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="80" style="width:0"></div></div></div>
+        <div class="skill-bar-wrap" style="margin-top:0.6rem"><div class="skill-bar-label"><span>JavaScript</span><span>60%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="60" style="width:0"></div></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">🗄️</div>
+        <div class="skill-cat">Database</div>
+        <div class="skill-name">Data Management</div>
+        <div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem"><span class="tag">SQL</span></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>SQL</span><span>72%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="72" style="width:0"></div></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">⚡</div>
+        <div class="skill-cat">Hardware / IoT</div>
+        <div class="skill-name">Embedded Systems</div>
+        <div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem"><span class="tag">Arduino UNO</span><span class="tag">Embedded C</span><span class="tag">Sensors</span><span class="tag">GSM</span></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Arduino</span><span>78%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="78" style="width:0"></div></div></div>
+        <div class="skill-bar-wrap" style="margin-top:0.6rem"><div class="skill-bar-label"><span>Sensor Integration</span><span>75%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="75" style="width:0"></div></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">🤖</div>
+        <div class="skill-cat">AI / ML</div>
+        <div class="skill-name">Machine Learning &amp; CV</div>
+        <div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem"><span class="tag">OpenCV</span><span class="tag">dlib</span><span class="tag">ML Models</span></div>
+        <div class="skill-bar-wrap"><div class="skill-bar-label"><span>OpenCV</span><span>65%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="65" style="width:0"></div></div></div>
+        <div class="skill-bar-wrap" style="margin-top:0.6rem"><div class="skill-bar-label"><span>ML Concepts</span><span>60%</span></div><div class="skill-bar"><div class="skill-bar-fill" data-w="60" style="width:0"></div></div></div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon-wrap">🛠️</div>
+        <div class="skill-cat">Tools &amp; Soft Skills</div>
+        <div class="skill-name">Dev Tools &amp; Leadership</div>
+        <div class="skill-tags" style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem"><span class="tag">VS Code</span><span class="tag">Arduino IDE</span><span class="tag">Canva</span><span class="tag">Leadership</span><span class="tag">Teamwork</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:4rem" class="reveal">
+      <div class="sec-label">Passions</div>
+      <h2 class="sec-title" style="margin-bottom:1.5rem">Areas of Interest</h2>
+      <div class="interest-grid">
+        <div class="interest-pill"><i class="fa-solid fa-layer-group"></i> Java Full Stack Development</div>
+        <div class="interest-pill"><i class="fa-solid fa-chart-line"></i> Data Analytics</div>
+        <div class="interest-pill"><i class="fa-solid fa-code"></i> Software Development</div>
+        <div class="interest-pill"><i class="fa-solid fa-brain"></i> Machine Learning &amp; AI</div>
+        <div class="interest-pill"><i class="fa-solid fa-microchip"></i> IoT &amp; Embedded Systems</div>
+        <div class="interest-pill"><i class="fa-solid fa-trophy"></i> Ball Badminton</div>
+        <div class="interest-pill"><i class="fa-solid fa-music"></i> Bharatanatyam</div>
+        <div class="interest-pill"><i class="fa-solid fa-users"></i> Event Coordination</div>
+      </div>
+    </div>
+  </section>
+  <footer><p>Designed &amp; built with ♥ by <span>Sakthi Dharshini C</span></p></footer>
+</div>
+
+<!-- ━━━━━━━━━ EDUCATION PAGE ━━━━━━━━━ -->
+<div id="page-education" class="page wrap">
+  <section class="section">
+    <button class="back-btn" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+    <div class="reveal">
+      <div class="sec-label">My Journey</div>
+      <h2 class="sec-title">Education &amp; Certifications</h2>
+    </div>
+
+    <div class="sec-label" style="margin-bottom:1.25rem;font-size:0.78rem">Academic Timeline</div>
+    <div class="tl-wrap reveal">
+      <div class="tl-item" onclick="this.classList.toggle('open')">
+        <div class="tl-year">2024 – 2027 (Ongoing)</div>
+        <div class="tl-title">B.Tech — Information Technology</div>
+        <div class="tl-sub">Dr. N.G.P. Institute of Technology, Coimbatore</div>
+        <span class="tl-badge">82% CGPA</span>
+        <div class="tl-detail">Pursuing a Bachelor of Technology in Information Technology with focus on full-stack development, IoT systems, machine learning and software engineering. Actively involved in project work, technical events, and student council activities. Strong CGPA of 82% maintained across semesters.</div>
+        <div class="tl-toggle"><i class="fa-solid fa-chevron-down"></i> Read more</div>
+      </div>
+      <div class="tl-item" onclick="this.classList.toggle('open')">
+        <div class="tl-year">2023</div>
+        <div class="tl-title">12th Standard — Higher Secondary</div>
+        <div class="tl-sub">S.R.C. Memorial Matriculation Hr. Sec. School, Erode</div>
+        <span class="tl-badge">81%</span>
+        <div class="tl-detail">Completed higher secondary education with strong academic performance in science and mathematics stream, laying a strong foundation for engineering studies.</div>
+        <div class="tl-toggle"><i class="fa-solid fa-chevron-down"></i> Read more</div>
+      </div>
+      <div class="tl-item" onclick="this.classList.toggle('open')">
+        <div class="tl-year">2019</div>
+        <div class="tl-title">10th Standard — SSLC</div>
+        <div class="tl-sub">S.R.C. Memorial Matriculation Hr. Sec. School, Erode</div>
+        <span class="tl-badge">100% 🎉</span>
+        <div class="tl-detail">Achieved a perfect score of 100% in the SSLC board examinations — a testament to academic discipline and commitment to excellence from an early stage.</div>
+        <div class="tl-toggle"><i class="fa-solid fa-chevron-down"></i> Read more</div>
+      </div>
+      <div class="tl-item" onclick="this.classList.toggle('open')">
+        <div class="tl-year">2024 · Internship</div>
+        <div class="tl-title">Full Stack Development — Krishtec</div>
+        <div class="tl-sub">15-day intensive internship, 2024</div>
+        <div class="tl-detail">Gained hands-on industry experience in full-stack web development. Built a complete e-commerce web application from scratch using React.js for the frontend and Node.js for the backend. Learned real-world practices for API design, database integration, and professional code organisation under a guided mentorship environment.</div>
+        <div class="tl-toggle"><i class="fa-solid fa-chevron-down"></i> Read more</div>
+      </div>
+    </div>
+
+    <div style="margin-top:4rem" class="reveal">
+      <div class="sec-label">Credentials</div>
+      <h2 class="sec-title" style="margin-bottom:2rem">Certifications</h2>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="cert-icon-wrap">🏆</div>
+          <div style="flex:1">
+            <div class="cert-name">Human Computer Interaction</div>
+            <div class="cert-org">NPTEL · May 2026</div>
+            <div class="cert-score">Elite + Gold · 94%</div>
+            <div class="cert-bar"><div class="cert-bar-fill" data-w="94" style="width:0"></div></div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon-wrap">📊</div>
+          <div style="flex:1">
+            <div class="cert-name">Foundation of R Software</div>
+            <div class="cert-org">NPTEL · October 2023</div>
+            <div class="cert-score">Elite · 61%</div>
+            <div class="cert-bar"><div class="cert-bar-fill" data-w="61" style="width:0"></div></div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon-wrap">🏭</div>
+          <div style="flex:1">
+            <div class="cert-name">Intro to Industry 4.0 &amp; IIoT</div>
+            <div class="cert-org">NPTEL · October 2024</div>
+            <div class="cert-score">58%</div>
+            <div class="cert-bar"><div class="cert-bar-fill" data-w="58" style="width:0"></div></div>
+          </div>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon-wrap">🌐</div>
+          <div style="flex:1">
+            <div class="cert-name">Full Stack Development</div>
+            <div class="cert-org">Course Completion Certificate</div>
+            <div class="cert-score">Completed ✓</div>
+            <div class="cert-bar"><div class="cert-bar-fill" data-w="100" style="width:0"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer><p>Designed &amp; built with ♥ by <span>Sakthi Dharshini C</span></p></footer>
+</div>
+
+<!-- ━━━━━━━━━ ACHIEVEMENTS PAGE ━━━━━━━━━ -->
+<div id="page-achievements" class="page wrap">
+  <section class="section">
+    <button class="back-btn" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+    <div class="reveal">
+      <div class="sec-label">Highlights</div>
+      <h2 class="sec-title">Achievements &amp; Activities</h2>
+    </div>
+
+    <div class="sec-label" style="margin-bottom:1.25rem;font-size:0.78rem">Awards &amp; Recognition</div>
+    <div class="ach-grid reveal">
+      <div class="ach-item"><div class="ach-icon">🥇</div><div><div class="ach-title">Ball Badminton — 1st Prize</div><div class="ach-text">Won first prize in Ball Badminton at the Journal Level, and third prize at the District Level — representing the college in competitive sports.</div></div></div>
+      <div class="ach-item"><div class="ach-icon">🥈</div><div><div class="ach-title">Bharatanatyam — 2nd Prize</div><div class="ach-text">Won second prize in Bharatanatyam classical dance performance organised by the Rotary Club — showcasing talent beyond technology.</div></div></div>
+      <div class="ach-item"><div class="ach-icon">🏅</div><div><div class="ach-title">NPTEL Elite + Gold — HCI</div><div class="ach-text">Secured Elite + Gold certification in Human Computer Interaction with a 94% score — top tier NPTEL achievement.</div></div></div>
+      <div class="ach-item"><div class="ach-icon">🎖️</div><div><div class="ach-title">NPTEL Elite — R Software</div><div class="ach-text">Secured Elite certification in Foundation of R Software from NPTEL, demonstrating proficiency in statistical programming.</div></div></div>
+    </div>
+
+    <div style="margin-top:3.5rem" class="reveal">
+      <div class="sec-label" style="margin-bottom:1.25rem;font-size:0.78rem">Leadership &amp; Events</div>
+      <div class="ach-grid">
+        <div class="ach-item"><div class="ach-icon">🎪</div><div><div class="ach-title">Student Council Volunteer — Kanam Fest</div><div class="ach-text">Served as a Student Council Volunteer at Kanam Fest, NGP iTech — coordinating event activities, managing logistics and supporting team operations during the college's flagship cultural event.</div></div></div>
+        <div class="ach-item"><div class="ach-icon">💡</div><div><div class="ach-title">MSME Idea Hackathon</div><div class="ach-text">Participated in the MSME Idea Hackathon at Dr. N.G.P. Institute of Technology, Coimbatore 2024 — pitching an innovative solution in a competitive ideation environment.</div></div></div>
+        <div class="ach-item"><div class="ach-icon">🧑‍🏫</div><div><div class="ach-title">Peer Mentoring</div><div class="ach-text">Coordinated in projects and guided juniors in technical events. Mentored peers during coding and debugging contests, demonstrating strong leadership and communication skills.</div></div></div>
+        <div class="ach-item"><div class="ach-icon">🎤</div><div><div class="ach-title">Technical Events Attended</div><div class="ach-text">Participated in HR Conclave on "AI in HR" (Sri Venkateshwara College), Technical Symposia at K.S.R. Educational Institute and Madras Institute of Technology, Chennai.</div></div></div>
+      </div>
+    </div>
+
+    <div style="margin-top:3.5rem" class="reveal">
+      <div class="sec-label" style="margin-bottom:1.25rem;font-size:0.78rem">Extracurricular</div>
+      <div class="interest-grid">
+        <div class="interest-pill"><i class="fa-solid fa-trophy"></i> Ball Badminton Player</div>
+        <div class="interest-pill"><i class="fa-solid fa-music"></i> Bharatanatyam Dancer</div>
+        <div class="interest-pill"><i class="fa-solid fa-users"></i> Event Volunteer / Fest Coordinator</div>
+        <div class="interest-pill"><i class="fa-solid fa-star"></i> Inter-college Event Participant</div>
+        <div class="interest-pill"><i class="fa-solid fa-masks-theater"></i> Stage &amp; Cultural Performances</div>
+        <div class="interest-pill"><i class="fa-solid fa-running"></i> Active in Sports &amp; Culture</div>
+      </div>
+    </div>
+  </section>
+  <footer><p>Designed &amp; built with ♥ by <span>Sakthi Dharshini C</span></p></footer>
+</div>
+
+<!-- ━━━━━━━━━ CONTACT PAGE ━━━━━━━━━ -->
+<div id="page-contact" class="page wrap">
+  <section class="section">
+    <button class="back-btn" onclick="showPage('home')"><i class="fa-solid fa-arrow-left"></i> Back</button>
+    <div class="reveal">
+      <div class="sec-label">Let's Connect</div>
+      <h2 class="sec-title">Get In Touch</h2>
+    </div>
+    <div class="contact-grid reveal">
+      <div class="contact-info">
+        <a href="mailto:sakthichandran1908@gmail.com" class="contact-item">
+          <div class="c-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div><div class="c-label">Email</div><div class="c-val">sakthichandran1908@gmail.com</div></div>
+        </a>
+        <a href="tel:+919344998004" class="contact-item">
+          <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
+          <div><div class="c-label">Phone</div><div class="c-val">+91 93449 98004</div></div>
+        </a>
+        <a href="https://www.linkedin.com/in/sakthidharshini" target="_blank" class="contact-item">
+          <div class="c-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+          <div><div class="c-label">LinkedIn</div><div class="c-val">linkedin.com/in/sakthidharshini</div></div>
+        </a>
+        <div class="contact-item">
+          <div class="c-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div><div class="c-label">Location</div><div class="c-val">Coimbatore, Tamil Nadu, India 641048</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon"><i class="fa-solid fa-calendar"></i></div>
+          <div><div class="c-label">Date of Birth</div><div class="c-val">19 August 2006</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon"><i class="fa-solid fa-language"></i></div>
+          <div><div class="c-label">Languages</div><div class="c-val">English · Tamil · Kannada</div></div>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <h3>Open to Opportunities ✨</h3>
+        <p>Whether it's an internship, a project collaboration, a technical event, or just a hello — I'd love to hear from you. Let's build something great together!</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="mailto:sakthichandran1908@gmail.com" class="btn-grad">Say Hello <i class="fa-solid fa-paper-plane"></i></a>
+          <a href="https://www.linkedin.com/in/sakthidharshini" target="_blank" class="btn-ghost"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer><p>Designed &amp; built with ♥ by <span>Sakthi Dharshini C</span> · Coimbatore · 2025</p></footer>
+</div>
+
+<script>
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById('page-'+id);
+  if(el){el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active',a.dataset.page===id||('page-'+id).startsWith('page-proj')&&a.dataset.page==='projects');
+  });
+  setTimeout(activateReveals,100);
+  setTimeout(animateBars,300);
+}
+
+function showProject(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el=document.getElementById('page-proj-'+id);
+  if(el){el.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+  setTimeout(activateReveals,100);
+}
+
+function activateReveals(){
+  document.querySelectorAll('.page.active .reveal').forEach(r=>r.classList.add('visible'));
+}
+
+function animateBars(){
+  document.querySelectorAll('.page.active .skill-bar-fill,.page.active .cert-bar-fill').forEach(b=>{
+    b.style.width=(b.dataset.w||0)+'%';
+  });
+}
+
+window.addEventListener('scroll',()=>{
+  const pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;
+  document.getElementById('scrollBar').style.width=pct+'%';
+});
+
+document.querySelectorAll('.nav-cards,.projects-grid,.skills-grid,.cert-grid,.ach-grid').forEach(g=>{
+  [...g.children].forEach((c,i)=>{c.style.transitionDelay=(i*0.07)+'s'});
+});
+
+activateReveals();
+animateBars();
+</script>
+</body>
+</html>
